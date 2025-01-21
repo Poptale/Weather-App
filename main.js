@@ -16,9 +16,14 @@ async function checkWeather(city) {
     if(response.status == 404){
         document.querySelector(".wrapper").style.display = "none";
         document.querySelector(".wrapper2").style.display = "block";
+        document.querySelector(".card1").style.display = "none";
+        document.querySelector(".card2").style.display = "none";
+    
     } else{
         document.querySelector(".wrapper").style.display = "block";
         document.querySelector(".wrapper2").style.display = "none";   
+        document.querySelector(".card1").style.display = "flex";
+        document.querySelector(".card2").style.display = "flex";
     }
     var data = await response.json();
     function convertUnixToTime(unixTimestamp) {
@@ -68,7 +73,7 @@ async function checkWeather(city) {
         img.src = "Images/mist.png";
         let randomNo = Math.floor(Math.random()*5);
         bgImg.src = `Background Image/Mist image/Image ${randomNo}.jpg`;
-    } 
+    }
     else if(data.weather[0].main == "Clouds"){
         img.src = "Images/clouds.png";
         let randomNo = Math.floor(Math.random()*5);
@@ -102,7 +107,5 @@ async function checkWeather(city) {
 
 btn.addEventListener("click", ()=>{
     document.querySelector(".wrapper").style.display = "block";
-    document.querySelector(".card1").style.display = "flex";
-    document.querySelector(".card2").style.display = "flex";
     checkWeather(input.value);
 });
